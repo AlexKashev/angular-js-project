@@ -31,7 +31,7 @@
 
                     $http(request)
                         .then(function(response) {
-                            console.log(response.data);
+                            localStorage.setItem( 'access-token', response.data.access_token );
 
                             toastr.success( 'Login successfull!' );
                             deferred.resolve(response.data);
@@ -43,13 +43,8 @@
                     return deferred.promise;
                 }
                 
-                function logout() {
-                    
-                }
-                
                 return {
                     registerUser: registerUser,
-                    loginUser: loginUser,
-                    logout: logout
+                    loginUser: loginUser
                 }
         }]);

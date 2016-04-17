@@ -1,5 +1,6 @@
 angular.module('myApp.home', [
-        'myApp.users.authentication'
+        'myApp.users.authentication',
+        'myApp.users.identity'
     ])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/', {
@@ -11,19 +12,33 @@ angular.module('myApp.home', [
         '$scope',
         '$location',
         'authentication',
-        function($scope, $location, authentication) {
+        'identity',
+        function($scope, $location, authentication, identity ) {
+            $scope.isAuthenticated = false;
+
+            identity.getCurrentUser()
+                .then( function ( loggedUser ) {
+                    $scope.isAuthenticated = true;
+                });
+
             $scope.login = function (user) {
                 authentication.loginUser(user)
                     .then(function(loggedInUser){
-                        console.log(loggedInUser);
-                        // $location.path('/newsFeed');                        
+                        // $location.path('/dashboard');
+                        $scope.isAuthenticated = true;                        
                     });
             };
             
             $scope.register = function (user) {
                 authentication.registerUser(user)
                     .then(function(registeredUser) {
-                        console.log(registeredUser);
+                        $scope.isAuthenticated = true;
                     });
             };
+
+            $scope.logout = function() {
+                localStorage.removeItem( 'access-token' );
+                $scope.isAuthenticated = false; 
+            }
+
         }]);
