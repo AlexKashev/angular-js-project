@@ -24,7 +24,6 @@ angular.module('myApp.home', [
                 authentication.registerUser(user)
                     .then(function(registeredUser) {
                         console.log(registeredUser);
-                        alert("User registered successfully");
                     });
             };
         }]);

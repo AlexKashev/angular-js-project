@@ -11,33 +11,33 @@
                     $http.post(BASE_URL + 'api/Account/Register', user)
                         .then(function(response) {
                             deferred.resolve(response.data);
+                            toastr.success( 'Registered successfull!' );
                         }, function(error) {
-                            
+                            toastr.error('This email is already taken');
                         });
                     
                     return deferred.promise;
                 }
                 
                 function loginUser(user) {
-                    var deferred = $q.defer();
-
-                    var loginData = 'Username=' + user.username + '&Password=' + user.password + '&grant_type=password';
-
-                    console.log( user );
-
-                    var request = {
-                        method: 'POST',
-                        url: BASE_URL + 'api/Token',
-                        data: loginData,
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-                    };
+                    var deferred = $q.defer(),
+                        loginData = 'Username=' + user.username + '&Password=' + user.password + '&grant_type=password',
+                            request = {
+                            method: 'POST',
+                            url: BASE_URL + 'api/Token',
+                            data: loginData,
+                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                        };
 
                     $http(request)
                         .then(function(response) {
                             console.log(response.data);
+
+                            toastr.success( 'Login successfull!' );
                             deferred.resolve(response.data);
-                        }, function() {
-                            
+
+                        }, function( err ) {
+                            toastr.error( err.data.error_description );
                         });
                         
                     return deferred.promise;
