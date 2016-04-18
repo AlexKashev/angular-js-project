@@ -10,6 +10,8 @@
                     
                     $http.post(BASE_URL + 'api/Account/Register', user)
                         .then(function(response) {
+                            localStorage.setItem( 'access-token', response.data.access_token );
+                            console.log(response)
                             deferred.resolve(response.data);
                             toastr.success( 'Registered successfull!' );
                         }, function(error) {

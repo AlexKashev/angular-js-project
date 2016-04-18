@@ -1,6 +1,7 @@
 angular.module('myApp.home', [
         'myApp.users.authentication',
-        'myApp.users.identity'
+        'myApp.users.identity',
+        'myApp.issues'
     ])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/', {
@@ -13,7 +14,8 @@ angular.module('myApp.home', [
         '$location',
         'authentication',
         'identity',
-        function($scope, $location, authentication, identity ) {
+        'issues',
+        function($scope, $location, authentication, identity, issues ) {
             $scope.isAuthenticated = false;
 
             identity.getCurrentUser()
@@ -40,5 +42,10 @@ angular.module('myApp.home', [
                 localStorage.removeItem( 'access-token' );
                 $scope.isAuthenticated = false; 
             }
+
+            issues.getUserIssues()
+                .then( function( issues ) {
+                    console.log( issues );
+                })
 
         }]);
