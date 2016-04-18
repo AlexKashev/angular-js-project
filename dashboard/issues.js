@@ -15,6 +15,18 @@ angular.module('myApp.issues', [])
                         });
                     
                     return deferred.promise;
+                },
+
+                getUserProjects: function() {
+                    var deferred = $q.defer(),
+                        url = BASE_URL + 'Projects/?pageSize=' + 100 + '&pageNumber=' + 1 + '&filter=Lead.Username="1@1"';
+
+                    $http.get(url)
+                        .then(function(issues){
+                            deferred.resolve(issues);
+                        });
+
+                    return deferred.promise;
                 }
             };
     }]);

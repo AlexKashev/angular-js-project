@@ -41,11 +41,15 @@ angular.module('myApp.home', [
             $scope.logout = function() {
                 localStorage.removeItem( 'access-token' );
                 $scope.isAuthenticated = false; 
-            }
+            };
 
             issues.getUserIssues()
                 .then( function( issues ) {
                     console.log( issues );
-                })
+                });
 
+            issues.getUserProjects()    
+                .then( function( issues ) {
+                    console.log( issues );
+                });
         }]);
