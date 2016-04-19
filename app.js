@@ -7,9 +7,10 @@ angular.module('myApp', [
   'myApp.home',
   'myApp.dashboard',
   'myApp.view2',
-  'myApp.version'
+  'myApp.version',
+  'myApp.singleProject',
 ])
 .config(['$routeProvider', function($routeProvider) {
-     $routeProvider.otherwise({redirectTo: '/'});
+    // $routeProvider.otherwise({redirectTo: '/'});
 }])
 .constant('BASE_URL', 'http://softuni-issue-tracker.azurewebsites.net/');

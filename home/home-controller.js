@@ -45,11 +45,23 @@ angular.module('myApp.home', [
 
             issues.getUserIssues()
                 .then( function( issues ) {
-                    console.log( issues );
+                    //console.log( issues );
                 });
 
             issues.getUserProjects()    
-                .then( function( issues ) {
-                    console.log( issues );
+                .then( function( projects ) {
+                    //console.log( projects );
+                    $scope.userProjects = projects.data;
                 });
+
+            // $scope.goProjectPage = function() {
+            //     $location.path('home/projects');
+            //     console.log('qko')
+            // }   
+
+            $scope.openProject = function( id ) {
+                $location.path('projects/' + id );
+            } 
+
+
         }]);

@@ -27,10 +27,17 @@
         </form>
     </div>
 </div>
+
+<button class="btn btn-primary" ng-click="logout()">logout</button> 
+<button class="btn btn-primary" ng-click="goProjectPage()">Projects</button>
+
 <div class="row" ng-show="isAuthenticated == true">
-            <button class="btn btn-primary" ng-click="logout()">logout</button> 
-               <div class="user-projects col-md-6">
+    <div class="user-projects col-md-6">
         <h2 class="title">User projects</h2>
+
+        <ul ng-repeat="el in userProjects"> 
+            <li ng-click="openProject(el.Id)">{{ el.Name }}</li>
+        </ul>
     </div>
     <div class="user-issues">
         <h2 class="title">User issues</h2>
