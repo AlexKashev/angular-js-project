@@ -27,7 +27,9 @@ angular.module('myApp.home', [
                 authentication.loginUser(user)
                     .then(function(loggedInUser){
                         // $location.path('/dashboard');
-                        $scope.isAuthenticated = true;                        
+                        $scope.isAuthenticated = true;
+
+                        console.log( loggedInUser );                      
                     });
             };
             
@@ -48,16 +50,16 @@ angular.module('myApp.home', [
                     //console.log( issues );
                 });
 
-            issues.getUserProjects()    
+            issues.getAllProjects()    
                 .then( function( projects ) {
                     //console.log( projects );
                     $scope.userProjects = projects.data;
                 });
 
-            // $scope.goProjectPage = function() {
-            //     $location.path('home/projects');
-            //     console.log('qko')
-            // }   
+            $scope.openProjectsPage = function() {
+                $location.path('projects');
+                console.log('qko')
+            }   
 
             $scope.openProject = function( id ) {
                 $location.path('projects/' + id );

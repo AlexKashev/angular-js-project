@@ -21,4 +21,11 @@ angular.module('myApp.singleProject', [
 
                     $scope.project = project.data;
                 })
+
+            $scope.editProject = function() {
+                issues.updateProject( $scope.project.Id, $scope.project )    
+                    .then( function( project ) {
+                        console.log( project );
+                    });
+            }
     }]);
