@@ -47,7 +47,8 @@ angular.module('myApp.home', [
 
             issues.getUserIssues()
                 .then( function( issues ) {
-                    //console.log( issues );
+                    console.log( issues );
+                    $scope.userIssues = issues.data;
                 });
 
             issues.getAllProjects()    
