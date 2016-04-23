@@ -44,9 +44,22 @@
                         
                     return deferred.promise;
                 }
+
+                function getAllUsers() {
+                    var deferred = $q.defer(),
+                        url = BASE_URL + 'Users';
+
+                    $http.get(url)
+                        .then(function(users){
+                            deferred.resolve(users.data);
+                        });
+
+                    return deferred.promise;
+                }
                 
                 return {
                     registerUser: registerUser,
-                    loginUser: loginUser
+                    loginUser: loginUser,
+                    getAllUsers: getAllUsers
                 }
         }]);

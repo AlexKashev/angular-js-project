@@ -10,6 +10,7 @@ angular.module('myApp', [
   'myApp.version',
   'myApp.singleProject',
   'myApp.allProjects',
+  'myApp.addIssue',
 ])
 .config(['$routeProvider', function($routeProvider) {
     // $routeProvider.otherwise({redirectTo: '/'});

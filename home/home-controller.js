@@ -53,7 +53,7 @@ angular.module('myApp.home', [
 
             issues.getAllProjects()    
                 .then( function( projects ) {
-                    //console.log( projects );
+                    console.log( projects );
                     $scope.userProjects = projects.data;
                 });
 

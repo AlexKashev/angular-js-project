@@ -10,9 +10,10 @@ angular.module('myApp.singleProject', [
     }])
     .controller('SingleProjectCtrl', [
         '$scope',
+        '$location',
         '$routeParams',
         'issues',
-        function($scope, $routeParams, issues) {
+        function($scope, $location, $routeParams, issues) {
             var projectId = $routeParams.id;
 
             issues.getProjectById(projectId)
@@ -28,4 +29,9 @@ angular.module('myApp.singleProject', [
                         console.log( project );
                     });
             }
+
+            $scope.addIssue = function() {
+                $location.path('projects/:id/add-issue')
+                console.log('qko')
+            } 
     }]);

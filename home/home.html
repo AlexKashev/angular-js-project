@@ -43,7 +43,9 @@
         <h2 class="title">User issues</h2>
 
         <ul ng-repeat="el in userIssues">
-            <li>{{el}}</li>
+            <ul ng-repeat="is in el">
+                <li>{{is.Title}} {{is.Description}} {{is.Project.Name}} {{is.DueDate}}</li>
+            </ul>
         </ul>
     </div>
 </div>
