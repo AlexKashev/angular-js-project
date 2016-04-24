@@ -22,4 +22,5 @@ angular.module('myApp.allProjects', [
         $scope.openProject = function( id ) {
             $location.path('projects/' + id );
         }
+
     }]);

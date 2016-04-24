@@ -48,7 +48,7 @@ angular.module('myApp.home', [
             issues.getUserIssues()
                 .then( function( issues ) {
                     console.log( issues );
-                    $scope.userIssues = issues.data;
+                    $scope.userIssues = issues.data.Issues;
                 });
 
             issues.getAllProjects()    
@@ -66,5 +66,8 @@ angular.module('myApp.home', [
                 $location.path('projects/' + id );
             } 
 
+            $scope.openIssue = function( id ) {
+                $location.path('issues/' + id );
+            }
 
         }]);

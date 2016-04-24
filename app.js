@@ -11,6 +11,7 @@ angular.module('myApp', [
   'myApp.singleProject',
   'myApp.allProjects',
   'myApp.addIssue',
+  'myApp.singleIssue',
 ])
 .config(['$routeProvider', function($routeProvider) {
     // $routeProvider.otherwise({redirectTo: '/'});

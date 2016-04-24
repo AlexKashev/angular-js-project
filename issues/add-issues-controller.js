@@ -29,7 +29,7 @@ angular.module('myApp.addIssue', [
 
             authentication.getAllUsers()
                 .then( function( users ) {
-                    console.log( users );
+                    // console.log( users );
                     $scope.users = users;
             });
 

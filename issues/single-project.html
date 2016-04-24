@@ -1,11 +1,19 @@
-<label>Name: </label><input ng-model="project.Name" /></br>
-<label>Description: </label><input ng-model="project.Description" /></br>
-<label>Asignee id:</label><span>{{project.Lead.Id}}</span>
-<input ng-model="project.Lead.Username" /></br>
-<!-- <ul ng-repeat="el in project.Priorities"> 
-	<li>{{ el.Name }}</li>
-</ul> -->
-<span class="hidden">{{project.Id}}</span>
+<div class="col-md-6">
+	<label>Name: </label><input ng-model="project.Name" /></br>
+	<label>Description: </label><input ng-model="project.Description" /></br>
+	<label>Asignee id:</label><span>{{project.Lead.Id}}</span>
+	<input ng-model="project.Lead.Username" /></br>
+	<!-- <ul ng-repeat="el in project.Priorities"> 
+		<li>{{ el.Name }}</li>
+	</ul> -->
+	<span class="hidden">{{project.Id}}</span>
 
-<button class="btn btn-primary" ng-click="editProject()"> Edit </button>
-<button class="btn btn-primary" ng-click="addIssue()">Add issues</button>
+	<button class="btn btn-primary" ng-click="editProject()"> Edit </button>
+	<button class="btn btn-primary" ng-click="addIssue()">Add issues</button>
+</div>
+
+<div class="col-md-6">
+	<ul ng-repeat="el in projectIssues"> 
+	    <li ng-click="openIssue(el.Id)">{{ el.Title }}</li>
+	</ul>
+</div>
