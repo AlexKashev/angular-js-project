@@ -1,23 +1,28 @@
-<div class="form-group">
-  <label for="usr">Name:</label>
-  <input type="text" class="form-control" id="usr">
+
+<div class="col-md-6">
+	<label>Title:</label>
+	<input type="text" class="form-control" ng-model="issue.Title">
+
+	<label>Description:</label>
+	<input type="text" class="form-control" ng-model="issue.Description">
+
+	<select name="users" ng-model="issue.AsigneeId">
+		<option class="form-control" ng-repeat="el in allUsers" value="{{el.Id}}">{{el.Username}}</option>
+	</select>
+	</br>
+
+	<select name="project" ng-change="getProjectPriorities()" ng-model="issue.ProjectId" >
+		<option class="form-control" ng-repeat="el in allProjects" value="{{el.Id}}" >{{el.Name}}</option>
+	</select>
+	</br>
+
+	<select name="priorities" ng-model="issue.PriorityId">
+		<option class="form-control" ng-repeat="el in priorities" value="{{el.Id}}" >{{el.Name}}</option>
+	</select>
+	</br>
+
+	<label>Due date:</label>
+	<input type="date" class="form-control" ng-model="issue.DueDate">
+
+	<buttun class="btn btn-primary" ng-click="addIssue()">Add</buttun>
 </div>
-<div class="form-group">
-  <label for="pwd">Password:</label>
-  <input type="password" class="form-control" id="pwd">
-</div>
-<select name="users" >
-	<option ng-repeat="el in users" value="{{el.Id}}">{{el.Username}}</option>
-</select>
-
-<select name="project" ng-change="getProjectPriorities()" ng-model="project">
-	<option ng-repeat="el in allProjects">{{el.Name}}</option>
-</select>
-</br>
-
-<select name="priorities" >
-	<option ng-repeat="el in priorities" value="{{el.Id}}">{{el.Name}}</option>
-</select>
-
-
-</br>

@@ -14,35 +14,31 @@ angular.module('myApp.addIssue', [
         'issues',
         'authentication',
         function($scope, $location, issues, authentication) {
-            $scope.priorities = [];
-
-            $scope.addIssue = function() {
-                $location.path('projects/:id/add-issue');
-                // console.log('qko')
-            }   
+            $scope.priorities = [];  
 
             issues.getAllProjects()    
                 .then( function( projects ) {
-                    //console.log( projects );
                     $scope.allProjects = projects.data;
             });
 
             authentication.getAllUsers()
                 .then( function( users ) {
-                    // console.log( users );
-                    $scope.users = users;
+                    $scope.allUsers = users.slice(1, 100); //because the users are too much
+                    console.log( users );
             });
 
             $scope.getProjectPriorities = function () {
-                // console.log( $scope.project );
-                // console.log( $scope.allProjects );
-
                 for( var i in $scope.allProjects ) {
-                    if( $scope.allProjects[i].Name === $scope.project ) {
+                    if( $scope.allProjects[i].Id == $scope.issue.ProjectId ) {
                         $scope.priorities = $scope.allProjects[i].Priorities;
-
-                        // console.log( $scope.priorities );
                     }
                 }
             }
+
+            $scope.addIssue = function() {
+                issues.addIssue( $scope.issue )    
+                    .then( function( issue ) {
+                        console.log( issue );
+                });
+            } 
     }]);

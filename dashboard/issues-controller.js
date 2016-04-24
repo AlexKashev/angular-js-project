@@ -74,11 +74,31 @@ angular.module('myApp.issues', [])
                             LeadId: model.Lead.Id
                         };
 
-                    console.log( data );
-
                     $http.put(url, data)
                         .then(function(project){
                             deferred.resolve(project);
+                        });
+
+                    return deferred.promise;
+                },
+
+                addIssue: function( model ) {
+                    var deferred = $q.defer(),
+                        url = BASE_URL + 'Issues/',
+                        data = {
+                            Title: model.Title,
+                            Description: model.Description,
+                            ProjectId: model.ProjectId,
+                            AssigneeId: model.AsigneeId,
+                            PriorityId: model.PriorityId,
+                            DueDate: model.DueDate
+                        };
+
+                    console.log( data );
+
+                    $http.post(url, data)
+                        .then(function(issue){
+                            deferred.resolve(issue);
                         });
 
                     return deferred.promise;
