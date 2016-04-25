@@ -2,14 +2,13 @@
 <label>Description: </label><input ng-model="issuePage.Description" /></br>
 <label>Asignee id:</label><span>{{issuePage.Assignee.Id}}</span>
 <input ng-model="issuePage.Assignee.Username" /></br>
-<label>Asignee id:</label><span>{{issuePage.Priority.Name}}</span>
-
-<label>Priority:</label><span>{{issuePage.Id}}</span></br>
+<label>Priority:</label><input ng-model="issuePage.Priority.Name"></input></br>
 <label>DueDate:</label><input ng-model="issuePage.DueDate" /></br>
 
 <label>Author:</label><span>{{issuePage.Author.Username}}</span></br>
 <label>Project:</label><span>{{issuePage.Project.Name}}</span></br>
 <label>Status:</label><span>{{issuePage.Status.Name}}</span></br>
 
-<button class="btn btn-primary" ng-click="editProject()"> Edit </button>
-<button class="btn btn-primary" ng-click="addIssue()">Add issues</button>
+<span class="hidden">{{issuePage.Id}}</span>
+
+<button class="btn btn-primary" ng-click="editIssue()"> Edit </button>

@@ -23,7 +23,7 @@ angular.module('myApp.singleIssue', [
                 })
 
             $scope.editIssue = function() {
-                issues.updateIssue( $scope.issue.Id, $scope.issue )    
+                issues.updateIssue( $scope.issuePage.Id, $scope.issuePage )    
                     .then( function( issue ) {
                         console.log( issue );
                     });

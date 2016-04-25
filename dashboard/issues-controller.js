@@ -82,6 +82,27 @@ angular.module('myApp.issues', [])
                     return deferred.promise;
                 },
 
+                updateIssue: function( id, model ) {
+                    var deferred = $q.defer(),
+                        url = BASE_URL + 'Issues/' + id,
+                        data = {
+                            Title: model.Title,
+                            Description: model.Description,
+                            AssigneeId: model.Assignee.Id,
+                            PriorityId: model.Priority.Id,
+                            DueDate: model.DueDate
+                        };
+
+
+                    console.log( data );
+                    $http.put(url, data)
+                        .then(function(issue){
+                            deferred.resolve(issue);
+                        });
+
+                    return deferred.promise;
+                },
+
                 addIssue: function( model ) {
                     var deferred = $q.defer(),
                         url = BASE_URL + 'Issues/',
