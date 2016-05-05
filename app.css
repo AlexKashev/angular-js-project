@@ -28,3 +28,37 @@
   content: "";
   padding: 0;
 }
+
+
+input {
+  border: 1px solid black !important;
+  border-radius: 0px !important; 
+}
+
+button {
+  background: #E07427 !important;
+  color: white !important;
+  border:none !important;
+  border-radius: 0px !important;
+  float: right;
+  text-transform: uppercase;
+}
+
+.row-login-form {
+  border-bottom: 1px solid #E07427;
+  padding-bottom: 50px;
+  border-top: 1px solid #E07427;
+  padding-top: 50px;
+}
+
+.background-header-home {
+  background: url('images/computer-962971_1920.jpg');
+  height: 100vh;
+  width: 100%;
+  display: block;
+}
+
+.title-home {
+  display: block;
+  color: white;
+}
