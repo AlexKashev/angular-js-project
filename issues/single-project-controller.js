@@ -48,4 +48,9 @@ angular.module('myApp.singleProject', [
             $scope.openIssue = function( id ) {
                 $location.path('issues/' + id );
             }
+
+            $scope.openDashboard = function() {
+                $location.path('')
+                console.log('gaco');
+            }
     }]);

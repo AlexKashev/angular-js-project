@@ -46,4 +46,8 @@ angular.module('myApp.addIssue', [
                         }
                     );
             } 
+
+           $scope.openDashboard = function() {
+                $location.path('')
+            }
     }]);

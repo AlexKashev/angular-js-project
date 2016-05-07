@@ -36,4 +36,7 @@ angular.module('myApp.singleIssue', [
             $scope.addIssue = function() {
                 $location.path('projects/:id/add-issue');
             } 
+            $scope.openDashboard = function() {
+                $location.path('')
+            }
     }]);

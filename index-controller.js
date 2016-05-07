@@ -1,13 +1,7 @@
-angular.module('myApp.allProjects', [
-        'myApp.allProjects',
+angular.module('myApp.index', [
+        'myApp.index',
         'ngRoute'
     ])
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/projects', {
-            templateUrl: 'home/projects.html',
-            controller: 'allProjectsCtrl'
-        })
-    }])
     .controller('allProjectsCtrl', [
         '$scope',
         '$location',
@@ -15,7 +9,7 @@ angular.module('myApp.allProjects', [
         function($scope, $location, issues) {
             $scope.currentProjectsPage = 0;
             $scope.userProjects = [];
-
+            
             $scope.numberOfPagesProjects = function(){
                 return Math.ceil( $scope.userProjects.length / 10 );                
             }
@@ -30,7 +24,4 @@ angular.module('myApp.allProjects', [
             $location.path('projects/' + id );
         }
 
-        $scope.openDashboard = function() {
-                $location.path('')
-        }
     }]);
