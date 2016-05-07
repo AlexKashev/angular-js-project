@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="bower_components\bootstrap\dist\css\bootstrap.min.css">
   <link rel="stylesheet" href="bower_components\toastr\toastr.min.css" >
   <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+ 
 </head>
 <body>
   <div>
@@ -19,7 +21,8 @@
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
-
+  <button class="btn btn-primary">DASHBOARD</button>
+  <button class="btn btn-primary" ng-click="openProjectsPage()">Projects</button>
   <div ng-view></div>
 
   <!-- <div>Angular seed app: v<span app-version></span></div> -->

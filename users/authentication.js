@@ -35,6 +35,8 @@
                         .then(function(response) {
                             localStorage.setItem( 'access-token', response.data.access_token );
 
+                            $http.defaults.headers.common.Authorization = 'Bearer ' + response.data.access_token;
+
                             toastr.success( 'Login successfull!' );
                             deferred.resolve(response.data);
 

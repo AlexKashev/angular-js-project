@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
+var app = angular.module('myApp', [
   'ngRoute',
   'myApp.common',
   'myApp.home',
@@ -16,4 +16,30 @@ angular.module('myApp', [
 .config(['$routeProvider', function($routeProvider) {
     // $routeProvider.otherwise({redirectTo: '/'});
 }])
-.constant('BASE_URL', 'http://softuni-issue-tracker.azurewebsites.net/');
+.constant('BASE_URL', 'http://softuni-issue-tracker.azurewebsites.net/')
+//let's make a startFrom filter
+.filter('startFrom', function() {
+    return function(input, start) {
+        start = +start; //parse to int
+
+        if( input ){
+          return input.slice(start);
+        }
+    }
+});
+
+
+$(window).load(function() {
+  $( ".circle" ).click(function() {
+  alert( "Handler for .click() called." );
+});
+  
+});
+
+$(document).on("click",".circle", function() {
+  $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+});
+
+
+
+

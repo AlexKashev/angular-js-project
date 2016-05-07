@@ -30,9 +30,14 @@ angular.module('myApp.singleProject', [
 
             $scope.editProject = function() {
                 issues.updateProject( $scope.project.Id, $scope.project )    
-                    .then( function( project ) {
-                        // console.log( project );
-                    });
+                    .then( 
+                        function( project ) {
+                            toastr.success( 'Project successfully edited!' );
+                        },
+                        function( errMessage ) {
+                            toastr.error( errMessage );
+                        }
+                    );
             }
 
             $scope.addIssue = function() {

@@ -1,4 +1,4 @@
-angular.module('myApp.home', [
+var home = angular.module('myApp.home', [
         'myApp.users.authentication',
         'myApp.users.identity',
         'myApp.issues'
@@ -17,19 +17,32 @@ angular.module('myApp.home', [
         'issues',
         function($scope, $location, authentication, identity, issues ) {
             $scope.isAuthenticated = false;
+            $scope.currentProjectsPage = 0;
+            $scope.userProjects = [];
+            $scope.userIssues = [];
+            $scope.currentIssuesPage = 0;
+            $scope.numberOfPagesProjects = function(){
+                return Math.ceil( $scope.userProjects.length / 10 );                
+            }
+
+            $scope.numberOfPagesIssues = function(){
+                return Math.ceil( $scope.userIssues.length / 10 );                
+            }
 
             identity.getCurrentUser()
                 .then( function ( loggedUser ) {
                     $scope.isAuthenticated = true;
+
+                    getIssuesAndProjects();
                 });
 
             $scope.login = function (user) {
                 authentication.loginUser(user)
                     .then(function(loggedInUser){
-                        // $location.path('/dashboard');
                         $scope.isAuthenticated = true;
 
-                        console.log( loggedInUser );                      
+                        getIssuesAndProjects(); 
+                        scrollTop();                    
                     });
             };
             
@@ -37,6 +50,9 @@ angular.module('myApp.home', [
                 authentication.registerUser(user)
                     .then(function(registeredUser) {
                         $scope.isAuthenticated = true;
+
+                        getIssuesAndProjects();
+                        scrollTop();
                     });
             };
 
@@ -45,21 +61,27 @@ angular.module('myApp.home', [
                 $scope.isAuthenticated = false; 
             };
 
-            issues.getUserIssues()
-                .then( function( issues ) {
-                    console.log( issues );
-                    $scope.userIssues = issues.data.Issues;
+            function scrollTop() {
+                $(function() {
+                   $('body').scrollTop(0);
                 });
+            }
 
-            issues.getAllProjects()    
-                .then( function( projects ) {
-                    console.log( projects );
-                    $scope.userProjects = projects.data;
-                });
+            function getIssuesAndProjects() {
+                issues.getUserIssues()
+                    .then( function( issues ) {
+                        $scope.userIssues = issues.data.Issues;
+                    });
+
+                issues.getAllProjects()    
+                    .then( function( projects ) {
+                        $scope.userProjects = projects.data;
+                    });
+            }
+
 
             $scope.openProjectsPage = function() {
                 $location.path('projects');
-                console.log('qko')
             }   
 
             $scope.openProject = function( id ) {

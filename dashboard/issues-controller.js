@@ -75,9 +75,14 @@ angular.module('myApp.issues', [])
                         };
 
                     $http.put(url, data)
-                        .then(function(project){
-                            deferred.resolve(project);
-                        });
+                        .then(
+                            function(project){
+                                deferred.resolve(project);
+                            },
+                            function( error ) {
+                                deferred.reject( error.data.Message );
+                            }
+                        );
 
                     return deferred.promise;
                 },
@@ -93,11 +98,12 @@ angular.module('myApp.issues', [])
                             DueDate: model.DueDate
                         };
 
-
-                    console.log( data );
                     $http.put(url, data)
                         .then(function(issue){
                             deferred.resolve(issue);
+                        },
+                        function( error ) {
+                            deferred.reject( error.data.Message );
                         });
 
                     return deferred.promise;
@@ -115,12 +121,14 @@ angular.module('myApp.issues', [])
                             DueDate: model.DueDate
                         };
 
-                    console.log( data );
-
                     $http.post(url, data)
-                        .then(function(issue){
-                            deferred.resolve(issue);
-                        });
+                        .then(
+                            function(issue){
+                                deferred.resolve(issue);
+                            },
+                            function(error) {
+                                deferred.reject(error.data.Message);
+                            });
 
                     return deferred.promise;
                 },

@@ -18,19 +18,22 @@ angular.module('myApp.singleIssue', [
 
             issues.getIssueById(issueId)
                 .then( function( issue ) {
-                    console.log( issue.data );
                     $scope.issuePage = issue.data;
                 })
 
             $scope.editIssue = function() {
                 issues.updateIssue( $scope.issuePage.Id, $scope.issuePage )    
-                    .then( function( issue ) {
-                        console.log( issue );
-                    });
+                    .then( 
+                        function( issue ) {
+                            toastr.success( 'Update successfull!')
+                        },
+                        function( errorMessage ) {
+                            toastr.error( errorMessage );
+                        }
+                    );
             }
 
             $scope.addIssue = function() {
-                $location.path('projects/:id/add-issue')
-                console.log('qko')
+                $location.path('projects/:id/add-issue');
             } 
     }]);

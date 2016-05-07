@@ -56,9 +56,52 @@ button {
   height: 100vh;
   width: 100%;
   display: block;
+  background-repeat: no-repeat;
 }
 
 .title-home {
-  display: block;
+  display: inline-block;
   color: white;
+  width: 100%;
+  margin-top: 20%;
+  font-size: 20px;
+}
+
+.circle {
+  padding: 15px;
+  padding-left: 14px;
+  margin-top: 20px;
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}
+
+.circle i {
+  font-size: 20px;
+  color: white;
+}
+
+.issues-title {
+  font-weight: bold;
+  color: #E07427;
+  margin-left: 7%;
+  padding-bottom: 20px;
+}
+
+ul {
+    list-style: square inside url("images/2.png");
+}
+
+.user-projects {
+  border-right: 2px solid #E07427;
+  margin-top: 30px;
+}
+
+.title {
+  border-bottom: 1px solid #E07427;
+  border-top: 1px solid #E07427;
 }

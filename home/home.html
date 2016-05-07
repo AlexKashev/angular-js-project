@@ -1,9 +1,10 @@
-<div class="background-header-home">
-    <div class="title-home text-center"> ISSUE TRACKER </div>
-    <div><i class="fa fa-arrow-down" aria-hidden="true"></i>onoi</div>   
+<div class="background-header-home" ng-show="isAuthenticated == false">
+    <span class="title-home text-center"> ISSUE TRACKER </span>
+    <div class="circle"><i class="fa fa-arrow-down click" aria-hidden="true"></i></div>   
 </div>
 <div class="row row-login-form" ng-show="!isAuthenticated">
     <div class="col-md-4 col-md-offset-1 border">
+    <h2 class="text-center">LOGIN</h2>
         <form name="loginUserForm">
             <input type="text" id="username" required="required" ng-model="loginUser.username" placeholder="Username" class="form-control" />
             <br />
@@ -14,6 +15,7 @@
     </div>
     
     <div class="col-md-4 col-md-offset-2 border">
+    <h2 class="text-center">REGISTER</h2>
         <form name="registerUserForm">
             <input type="password" required="required" min-length="6" max-length="100" placeholder="Password" ng-model="registerUser.password" id="reg-password" class="form-control" />
             <br />
@@ -30,18 +32,35 @@
 <button class="btn btn-primary" ng-show="isAuthenticated == true" ng-click="openProjectsPage()">Projects</button>
 
 <div class="row" ng-show="isAuthenticated == true">
-    <div class="user-projects col-md-6">
-        <h2 class="title">User projects</h2>
-
-        <ul ng-repeat="el in userProjects"> 
-            <li ng-click="openProject(el.Id)">{{ el.Name }}</li>
+    <div class="user-projects col-md-6 ">
+        <h2 class="title text-center ">Projects</h2>
+        <ul ng-repeat="el in userProjects | startFrom:currentProjectsPage*10 | limitTo:10"> 
+            <li  ng-click="openProject(el.Id)">{{ el.Name }}</li>
         </ul>
+        <button ng-disabled="currentProjectsPage == 0" ng-click="currentProjectsPage=currentProjectsPage-1">
+            Previous
+        </button>
+        {{currentProjectsPage+1}}/{{numberOfPagesProjects()}}
+        <button ng-disabled="currentProjectsPage >= data.length/pageSize - 1" ng-click="currentProjectsPage=currentProjectsPage+1">
+            Next
+        </button>
     </div>
-    <div class="user-issues">
-        <h2 class="title">User issues</h2>
+    <div class="col-md-6" >
+            <div class="user-issues">
+        <h2 class="title  text-center">Issues</h2>
+            <span class="issues-title">TITLE&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;DESCRIPTION&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DUEDATE</span>
+        <ul ng-repeat="el in userIssues | startFrom:currentIssuesPage*10 | limitTo:10"> 
 
-        <ul ng-repeat="el in userIssues"> 
-            <li ng-click="openIssue(el.Id)">{{el.Title}} {{el.Description}} {{el.Project.Name}} {{el.DueDate}}</li>
+            <li ng-click="openIssue(el.Id)">{{el.Title}} | {{el.Description}} | {{el.Project.Name}} | {{el.DueDate}}</li>
         </ul>
+        <button ng-disabled="currentIssuesPage == 0" ng-click="currentIssuesPage=currentIssuesPage-1">
+            Previous
+        </button>
+        {{currentIssuesPage+1}}/{{numberOfPagesIssues()}}
+        <button ng-disabled="currentIssuesPage >= data.length/pageSize - 1" ng-click="currentIssuesPage=currentIssuesPage+1">
+            Next
+        </button>
     </div>
+    </div>
+
 </div>

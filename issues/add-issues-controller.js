@@ -37,8 +37,13 @@ angular.module('myApp.addIssue', [
 
             $scope.addIssue = function() {
                 issues.addIssue( $scope.issue )    
-                    .then( function( issue ) {
-                        console.log( issue );
-                });
+                    .then( 
+                        function( issue ) {
+                            toastr.success( 'Issue added successfully!' );
+                        },
+                        function( errMessage ) {
+                            toastr.error( errMessage );
+                        }
+                    );
             } 
     }]);
