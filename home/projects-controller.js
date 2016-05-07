@@ -13,6 +13,13 @@ angular.module('myApp.allProjects', [
         '$location',
         'issues',
         function($scope, $location, issues) {
+            $scope.currentProjectsPage = 0;
+            $scope.userProjects = [];
+            
+            $scope.numberOfPagesProjects = function(){
+                return Math.ceil( $scope.userProjects.length / 10 );                
+            }
+
             issues.getAllProjects()    
                 .then( function( projects ) {
                     //console.log( projects );

@@ -1,4 +1,5 @@
-<div class="col-md-6">
+<div class="col-md-6 user-projects">
+	<h2 class="title text-center">CURRENT PROJECT</h2>
 	<label>Name: </label><input ng-model="project.Name" /></br>
 	<label>Description: </label><input ng-model="project.Description" /></br>
 	<label>Asignee id:</label><span>{{project.Lead.Id}}</span>
@@ -13,6 +14,7 @@
 </div>
 
 <div class="col-md-6">
+	<h2 class="title text-center">ISSUES</h2>	
 	<ul ng-repeat="el in projectIssues"> 
 	    <li ng-click="openIssue(el.Id)">{{ el.Title }}</li>
 	</ul>

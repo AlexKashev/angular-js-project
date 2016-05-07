@@ -1,6 +1,13 @@
 <div class="col-md-6">
 	<h2>All projects</h2>
-    <ul ng-repeat="el in allProjects"> 
+    <ul ng-repeat="el in allProjects | startFrom:currentProjectsPage*10 | limitTo:10"> 
         <li ng-click="openProject(el.Id)">{{ el.Name }}</li>
     </ul>
+        <button ng-disabled="currentProjectsPage == 0" ng-click="currentProjectsPage=currentProjectsPage-1">
+            Previous
+        </button>
+        {{currentProjectsPage+1}}/{{numberOfPagesProjects()}}
+        <button ng-disabled="currentProjectsPage >= data.length/pageSize - 1" ng-click="currentProjectsPage=currentProjectsPage+1">
+            Next
+        </button>
 </div>
