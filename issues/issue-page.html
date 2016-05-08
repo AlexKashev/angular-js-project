@@ -1,6 +1,7 @@
 <button class="btn btn-primary" ng-click="openDashboard()">DASHBOARD</button>
 
-<label>Name: </label><input ng-model="issuePage.Title" /></br>
+<div class="col-md-6">
+	<label>Name: </label><input ng-model="issuePage.Title" /></br>
 <label>Description: </label><input ng-model="issuePage.Description" /></br>
 <label>Asignee id:</label><span>{{issuePage.Assignee.Id}}</span>
 <input ng-model="issuePage.Assignee.Username" /></br>
@@ -14,3 +15,5 @@
 <span class="hidden">{{issuePage.Id}}</span>
 
 <button class="btn btn-primary" ng-click="editIssue()"> Edit </button>
+
+</div>
